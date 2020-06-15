@@ -41,6 +41,7 @@ import { useLocalStorage } from 'react-use';
 
 const VolumeDetailPage = () => {
   const [openModal, setOpenModal] = useState({ status: false, reviewId: '' });
+
   const [reviews, setReviews] = useLocalStorage('reviews', []);
   const history = useHistory();
   const { volumeId } = useParams();
@@ -130,6 +131,7 @@ const VolumeDetailPage = () => {
               )}
               {reviewsFiltered.map((item, index) => (
                 <ReviewItem
+                  item={item}
                   handleDelete={(value) =>
                     setOpenModal({ status: true, reviewId: value })
                   }

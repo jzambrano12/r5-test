@@ -1,12 +1,18 @@
 import styled from 'styled-components';
 
-export const deleteIconStyle = {
-  fontSize: 30,
-  color: '#dd4646',
+export const checkIconStyle = {
+  fontSize: 35,
+  color: '#46dd82',
   marginRight: 10,
 };
+
+export const deleteIconStyle = {
+  fontSize: 35,
+  color: '#dd4646',
+};
 export const editIconStyle = {
-  fontSize: 30,
+  fontSize: 35,
+  marginRight: 15,
   color: '#1d1d1d',
 };
 export const Wrapper = styled.div`
@@ -16,9 +22,10 @@ export const Wrapper = styled.div`
 `;
 
 export const Review = styled.div`
-  margin-bottom: 15px;
+  margin-bottom: 25px;
   display: flex;
   justify-content: space-between;
+  align-items: center;
 `;
 export const OptionsContainer = styled.div`
   display: flex;
@@ -27,6 +34,7 @@ export const OptionsContainer = styled.div`
   height: 40px;
   opacity: ${({ show }) => (show ? 1 : 0)};
   transition: all 0.5s ease;
+  margin-left: 20px;
 `;
 
 export const Option = styled.div`
