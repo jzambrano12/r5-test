@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 
 //Utils
 import { isEmpty, reverse } from 'ramda';
@@ -33,15 +33,12 @@ import ReviewItem from '../../components/molecules/Reviews';
 //Organism
 import LayoutOrganism from '../../components/organisms/Layout';
 import BookItem from '../../components/organisms/BookItem';
-import ConfirmationModal from '../../components/organisms/Modal/confirmation';
 
 //Hooks
 import { useGetVolumeById } from '../../data/hooks/volumes';
 import { useLocalStorage } from 'react-use';
 
 const VolumeDetailPage = () => {
-  const [openModal, setOpenModal] = useState({ status: false, reviewId: '' });
-
   const [reviews, setReviews] = useLocalStorage('reviews', []);
   const history = useHistory();
   const { volumeId } = useParams();
@@ -80,17 +77,6 @@ const VolumeDetailPage = () => {
   const reviewsFiltered = reviewsReversed.filter(
     (review) => review.volume_id === volumeId
   );
-
-  const handleDeleteReview = (reviewId) => {
-    const validation = reviewsFiltered.map((x) => x.id === reviewId);
-    if (validation.includes(true)) {
-      setReviews(reviews.filter((review) => review.id !== reviewId));
-    } else {
-      alert('El review que intentas eliminar, ya no existe.');
-    }
-
-    setOpenModal({ status: false, reviewId: '' });
-  };
 
   return (
     <LayoutOrganism withSearch={false}>
@@ -132,10 +118,6 @@ const VolumeDetailPage = () => {
               {reviewsFiltered.map((item, index) => (
                 <ReviewItem
                   item={item}
-                  handleDelete={(value) =>
-                    setOpenModal({ status: true, reviewId: value })
-                  }
-                  reviewId={item.id}
                   review={item.review}
                   reviewerName={item.name}
                   last={reviewsFiltered.length - 1 === index}
@@ -179,12 +161,6 @@ const VolumeDetailPage = () => {
           </ReviewsContainer>
         </Wrapper>
       )}
-      <ConfirmationModal
-        reviewId={openModal.reviewId}
-        open={openModal.status}
-        handleClose={() => setOpenModal({ status: false, reviewId: '' })}
-        handleAction={(value) => handleDeleteReview(value)}
-      />
     </LayoutOrganism>
   );
 };

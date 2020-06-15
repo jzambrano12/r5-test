@@ -24,5 +24,10 @@ export const P = styled.p`
   font-size: ${({ size }) => size || '16px'};
 `;
 export const Span = styled.span`
-  ${commonTextStyle}
+  ${commonTextStyle};
+`;
+export const A = styled.a`
+  ${commonTextStyle};
+  cursor: pointer;
+  text-decoration: underline;
 `;

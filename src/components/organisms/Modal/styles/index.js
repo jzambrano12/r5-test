@@ -12,6 +12,11 @@ export const Container = styled.div`
   background-color: white;
   border-radius: 10px;
   padding: 20px 16px 16px 16px;
+  z-index: 99999;
+
+  @media (max-width: 768px) {
+    width: 80%;
+  }
 `;
 export const InfoContainer = styled.div`
   display: flex;

@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import NotFoundPage from './pages/404';
 import HomePage from './pages/home';
 import VolumeDetailPage from './pages/volume-detail';
+import SearchPage from './pages/search-reviews';
 
 function App() {
   return (
@@ -16,6 +17,12 @@ function App() {
           path="/volume/:volumeId"
           name="Volume detail"
           component={VolumeDetailPage}
+        />
+        <Route
+          exact
+          path="/search"
+          name="Search Reviews"
+          component={SearchPage}
         />
         <Route path="*" name="not-found" component={NotFoundPage} />
       </Switch>

@@ -31,21 +31,26 @@ import InputTextArea from '../Inputs/text-area';
 import { useLocalStorage } from 'react-use';
 import { indexOf } from 'ramda';
 import { useHistory } from 'react-router-dom';
+import ConfirmationModal from '../../organisms/Modal/confirmation';
 
-const ReviewMolecule = ({
-  review,
-  reviewId,
-  reviewerName,
-  distanceTime,
-  last,
-  handleDelete,
-  item,
-}) => {
+const ReviewMolecule = ({ review, reviewerName, distanceTime, last, item }) => {
   const { go } = useHistory();
   const [reviews, setReviews] = useLocalStorage('reviews', []);
   const [showOptions, setShowOptions] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
   const [newReview, setNewReview] = useState(review);
+  const [openModal, setOpenModal] = useState({ status: false, reviewId: '' });
+
+  const handleDeleteReview = (reviewId) => {
+    const validation = reviews.map((x) => x.id === reviewId);
+    if (validation.includes(true)) {
+      setReviews(reviews.filter((review) => review.id !== reviewId));
+    } else {
+      alert('El review que intentas eliminar, ya no existe.');
+    }
+    setOpenModal({ status: false, reviewId: '' });
+    go();
+  };
 
   const handleEditReview = (item) => {
     const index = indexOf(item, reviews);
@@ -100,7 +105,11 @@ const ReviewMolecule = ({
               <Option onClick={() => setIsEditing(true)}>
                 <EditIcon style={editIconStyle} />
               </Option>
-              <Option onClick={() => handleDelete(reviewId)}>
+              <Option
+                onClick={() =>
+                  setOpenModal({ status: true, reviewId: item.id })
+                }
+              >
                 <DeleteIcon style={deleteIconStyle} />
               </Option>
             </>
@@ -122,6 +131,12 @@ const ReviewMolecule = ({
           </Span>
         </ReviewDistance>
       </Information>
+      <ConfirmationModal
+        reviewId={openModal.reviewId}
+        open={openModal.status}
+        handleClose={() => setOpenModal({ status: false, reviewId: '' })}
+        handleAction={(value) => handleDeleteReview(value)}
+      />
     </Wrapper>
   );
 };

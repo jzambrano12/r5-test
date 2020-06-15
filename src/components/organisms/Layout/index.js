@@ -16,6 +16,7 @@ import {
 //Atoms
 import Span from '../../atoms/Text/span';
 import H1 from '../../atoms/Text/h1';
+import A from '../../atoms/Text/a';
 
 //Icons
 import SearchIcon from '@material-ui/icons/Search';
@@ -25,6 +26,8 @@ const LayoutOrganism = ({
   withSearch,
   searchTerm,
   setSearchTerm,
+  withOutLink,
+  placeholder,
 }) => {
   return (
     <Wrapper>
@@ -36,12 +39,17 @@ const LayoutOrganism = ({
               BOOKS
             </Span>
           </H1>
+          {!withOutLink && (
+            <A size="14px" marginTop="10px" href="/search">
+              Ver todas las reseñas
+            </A>
+          )}
           {withSearch && (
             <FormContainer>
               <Input
                 onChange={(event) => setSearchTerm(event.target.value)}
                 value={searchTerm}
-                placeholder="Buscar libro ..."
+                placeholder={placeholder || 'Buscar libro ...'}
                 InputProps={{
                   startAdornment: (
                     <Adornment position="start">
