@@ -14,5 +14,13 @@ export default () => {
         return { error };
       }
     },
+    getVolumeById: async (_key, id) => {
+      try {
+        const { body } = await superAgent.get(`${BASE_URL}/volumes/${id}`);
+        return body;
+      } catch (error) {
+        return { error };
+      }
+    },
   };
 };

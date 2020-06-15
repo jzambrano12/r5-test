@@ -9,6 +9,10 @@
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
+    "date-fns": "^2.14.0",
+    "formik": "^2.1.4",
+    "html-react-parser": "^0.13.0",
+    "ramda": "^0.27.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-query": "^1.5.7",
@@ -17,7 +21,9 @@
     "react-use": "^15.2.4",
     "recoil": "^0.0.8",
     "styled-components": "^5.1.1",
-    "superagent": "^5.2.2"
+    "superagent": "^5.2.2",
+    "uuid": "^8.1.0",
+    "yup": "^0.29.1"
   },
   "scripts": {
     "start": "react-scripts start",

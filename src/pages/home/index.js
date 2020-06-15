@@ -39,10 +39,12 @@ const HomePage = () => {
     searchPage
   );
 
-  console.log({ volumesData });
-
   return (
-    <LayoutOrganism searchTerm={searchTerm} setSearchTerm={setSearchTerm}>
+    <LayoutOrganism
+      searchTerm={searchTerm}
+      setSearchTerm={setSearchTerm}
+      withSearch
+    >
       <Wrapper>
         {searchTerm.length === 0 ? (
           <EmptyStateContainer>
@@ -64,6 +66,7 @@ const HomePage = () => {
         ) : (
           volumesData?.items?.map((book) => (
             <BookItem
+              id={book?.id}
               imageSrc={
                 book.volumeInfo?.imageLinks?.thumbnail ?? imagePlaceholder
               }

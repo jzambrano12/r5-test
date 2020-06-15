@@ -7,8 +7,6 @@ const ImageAtom = ({
   marginBottom,
   marginLeft,
   marginRight,
-  width,
-  height,
 }) => {
   return (
     <Image
@@ -17,8 +15,6 @@ const ImageAtom = ({
       marginBottom={marginBottom}
       marginLeft={marginLeft}
       marginRight={marginRight}
-      width={width}
-      height={height}
     />
   );
 };

@@ -36,7 +36,7 @@ const LayoutOrganism = ({
               BOOKS
             </Span>
           </H1>
-          {!withSearch && (
+          {withSearch && (
             <FormContainer>
               <Input
                 onChange={(event) => setSearchTerm(event.target.value)}
