@@ -39,6 +39,18 @@ const HomePage = () => {
     searchPage
   );
 
+  const flatMap = (book) => {
+    return {
+      id: book.id,
+      imageSrc: book.volumeInfo?.imageLinks?.thumbnail || imagePlaceholder,
+      bookAuthor: book?.volumeInfo?.authors?.[0] || 'Sin autor',
+      bookReviewsAverage: book.volumeInfo?.averageRating || 0,
+      bookTitle: book.volumeInfo?.title,
+    };
+  };
+
+  const booksMapped = volumesData?.items?.map(flatMap);
+
   return (
     <LayoutOrganism
       searchTerm={searchTerm}
@@ -64,17 +76,15 @@ const HomePage = () => {
             No se encontro ninguna coincidencia
           </EmptyStateContainer>
         ) : (
-          volumesData?.items?.map((book) => (
+          booksMapped.map((book) => (
             <BookItem
-              id={book?.id}
-              imageSrc={
-                book.volumeInfo?.imageLinks?.thumbnail ?? imagePlaceholder
-              }
+              id={book.id}
+              imageSrc={book.imageSrc}
               imageWidth="200px"
               imageHeight="280px"
-              bookAuthor={book.volumeInfo.authors?.[0] ?? 'Sin autor'}
-              bookReviewsAverage={book.volumeInfo?.averageRating ?? 0}
-              bookTitle={book.volumeInfo.title}
+              bookAuthor={book.bookAuthor}
+              bookReviewsAverage={book.bookReviewsAverage}
+              bookTitle={book.bookTitle}
             />
           ))
         )}

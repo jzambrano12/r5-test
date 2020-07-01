@@ -47,6 +47,7 @@ const LayoutOrganism = ({
           {withSearch && (
             <FormContainer>
               <Input
+                data-testid="search-input"
                 onChange={(event) => setSearchTerm(event.target.value)}
                 value={searchTerm}
                 placeholder={placeholder || 'Buscar libro ...'}
